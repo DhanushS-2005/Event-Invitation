@@ -1,0 +1,139 @@
+/* style.css */
+
+/* Global theme variables */
+:root {
+    --primary: #6C63FF;
+    --secondary: #FF6584;
+    --bg1: #f0f4ff;
+    --bg2: #faf9ff;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --text: #2d2d2d;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --radius: 18px;
+}
+
+/* Animated gradient background */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, var(--bg1), var(--bg2), #e0e7ff, #fef6ff);
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease infinite;
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Card container with floating effect */
+.container {
+    width: 100%;
+    max-width: 750px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 35px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    animation: fadeIn 0.7s ease-in-out, floatUp 4s ease-in-out infinite;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 18px;
+}
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+h2, h3 {
+    font-weight: 600;
+}
+
+/* Buttons with ripple + gradient hover */
+button, .btn {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    box-shadow: 0 4px 12px rgba(108, 99, 255, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+button:hover, .btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(255, 101, 132, 0.45);
+}
+
+/* Ripple effect */
+button::after, .btn::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+}
+button:active::after, .btn:active::after {
+    width: 200%;
+    height: 200%;
+}
+
+/* Input fields with glow & hover transform */
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+    transition: border 0.3s, box-shadow 0.3s, transform 0.2s;
+    background: rgba(255, 255, 255, 0.7);
+}
+input:hover, textarea:hover {
+    transform: scale(1.02);
+}
+input:focus, textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 12px rgba(108, 99, 255, 0.35);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+@keyframes floatUp {
+    0%, 100% { transform: translateY(0);}
+    50% { transform: translateY(-6px);}
+}
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 22px;
+        margin: 12px;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+}
